@@ -13,8 +13,6 @@ import ec.edu.espoch.gestortarea.Vista.Principal;
 public class GestorTarea {
 
     public static void main(String[] args) {
-      
-        
         Principal objPrincipal = new Principal();
         objPrincipal.setVisible(true);
     }

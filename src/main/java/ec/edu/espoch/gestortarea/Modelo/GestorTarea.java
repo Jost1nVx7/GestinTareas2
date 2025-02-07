@@ -6,8 +6,8 @@ package ec.edu.espoch.gestortarea.Modelo;
 
 /**
  *
- * @author SO-LAB-PC5
+ * @author Global Technology Ec
  */
-public class Modelo {
+public class GestorTarea {
     
 }
