@@ -4,6 +4,8 @@
 
 package ec.edu.espoch.gestortarea;
 
+import ec.edu.espoch.gestortarea.Vista.Principal;
+
 /**
  *
  * @author SO-LAB-PC5
@@ -11,6 +13,9 @@ package ec.edu.espoch.gestortarea;
 public class GestorTarea {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+      
+        
+        Principal objPrincipal = new Principal();
+        objPrincipal.setVisible(true);
     }
 }

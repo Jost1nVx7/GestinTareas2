@@ -4,17 +4,20 @@
  */
 package ec.edu.espoch.gestortarea.Vista;
 
+import ec.edu.espoch.gestortarea.tester.TersterVista;
+
 /**
  *
  * @author SO-LAB-PC5
  */
 public class Principal extends javax.swing.JFrame {
+    
+    private TersterVista tester;
 
-    /**
-     * Creates new form Principal
-     */
     public Principal() {
         initComponents();
+        
+        this.tester = new TersterVista(this);
     }
 
     /**
@@ -35,9 +38,11 @@ public class Principal extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         rbtCompleta = new javax.swing.JRadioButton();
         rbtnPendiente = new javax.swing.JRadioButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        lblError = new javax.swing.JLabel();
+        mnbMenu = new javax.swing.JMenuBar();
+        mnuTareas = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        mnuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,6 +61,11 @@ public class Principal extends javax.swing.JFrame {
         lblDescripcion.setText("Descripcion");
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         buttonGroupTareas.add(rbtCompleta);
         rbtCompleta.setText("Completa");
@@ -63,22 +73,29 @@ public class Principal extends javax.swing.JFrame {
         buttonGroupTareas.add(rbtnPendiente);
         rbtnPendiente.setText("Pendiente");
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        lblError.setText("-----------------------------");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        mnuTareas.setText("Tareas");
 
-        setJMenuBar(jMenuBar1);
+        jMenuItem1.setText("Tareas Pendientes");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        mnuTareas.add(jMenuItem1);
+
+        mnbMenu.add(mnuTareas);
+
+        mnuSalir.setText("Salir");
+        mnbMenu.add(mnuSalir);
+
+        setJMenuBar(mnbMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(btnGuardar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -93,13 +110,21 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 24, Short.MAX_VALUE)
                                 .addComponent(lblDescripcion)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1)
                             .addComponent(txtTitulo))))
                 .addGap(56, 56, 56))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnGuardar)
+                .addGap(184, 184, 184))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(149, 149, 149)
+                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,9 +141,11 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbtCompleta)
                     .addComponent(rbtnPendiente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
                 .addComponent(btnGuardar)
-                .addGap(21, 21, 21))
+                .addGap(18, 18, 18)
+                .addComponent(lblError)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,17 +155,46 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTituloActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // Ventana de tareas pendientes
+        ListarlU objListar = new ListarlU();
+        objListar.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        this.tester.Prueba();
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    public String getTitulo() {
+        return txtTitulo.getText();
+    }
+
+    public String getDescripcion() {
+        return txaDescripcion.getText();
+    }
+
+    public boolean getEstado() {
+         return rbtCompleta.isSelected();
+         
+    }
     
+    public void Eror(){
+        lblError.setText("");
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.ButtonGroup buttonGroupTareas;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JMenuBar mnbMenu;
+    private javax.swing.JMenu mnuSalir;
+    private javax.swing.JMenu mnuTareas;
     private javax.swing.JRadioButton rbtCompleta;
     private javax.swing.JRadioButton rbtnPendiente;
     private javax.swing.JTextArea txaDescripcion;
